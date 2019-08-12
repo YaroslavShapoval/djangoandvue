@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import ExampleComponent from '@/components/ExampleComponent.vue'
+import MainComponent from '@/components/MainComponent.vue'
+import ReviewsComponent from '@/components/ReviewsComponent.vue'
 
 const routes = [
-  { path: '*', component: ExampleComponent }
+  { path: '*', component: MainComponent },
+  { path: '/reviews', component: ReviewsComponent }
 ]
 
 Vue.use(VueRouter)
