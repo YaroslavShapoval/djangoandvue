@@ -6,7 +6,7 @@ import ReviewsComponent from '@/components/ReviewsComponent.vue'
 
 const routes = [
   { path: '*', component: MainComponent },
-  { path: '/reviews', component: ReviewsComponent }
+  { path: '/reviews', component: ReviewsComponent, props: (route) => ({ searchString: route.query.q, page: parseInt(route.query.page) }) }
 ]
 
 Vue.use(VueRouter)
