@@ -1,69 +1,53 @@
 import axios from 'axios'
+import * as AuthHelper from '../../authHelper'
 
 const state = {
   loggedIn: false,
-  profile: {},
-  validation: {
-    email: true
-  },
-  authError: false
+  authError: false,
+  setConnection: false
 }
 
 const getters = {}
 
 const mutations = {
-  login (state) {
-    state.loggedIn = true
+  setLoggedIn (status) {
+    state.loggedIn = status
   },
-  logout (state) {
-    state.loggedIn = false
-  },
-  setProfile (state, payload) {
-    state.profile = payload
-  },
-  setValidationEmail (state, bool) {
-    state.validation.email = bool
-  },
+
   setAuthError (state, bool) {
     state.authError = bool
+  },
+
+  setConnectionError (state, bool) {
+    state.setConnection = bool
   }
 }
 
 const actions = {
-  async postLogin (context, payload) {
-    return axios.post('/api/users/login/', payload)
-      .then(response => {})
-      .catch(e => {
-        context.commit('setAuthError', true)
-        console.log(e)
-      })
+  logout ({ commit }) {
+    AuthHelper.logout()
+    commit('setLoggedIn', false)
   },
 
-  async postRegister (context, payload) {
-    return axios.post('/api/users/register/', payload)
+  async login ({ commit }, payload) {
+    commit('setAuthError', false)
+    commit('setConnectionError', false)
+
+    return axios.post('/api/users/login', payload)
       .then(response => {
-        if (response.data.status === 210) {
-          context.commit('setValidationEmail', false)
-        } else {
-          context.commit('setValidationEmail', true)
-          context.commit('login')
-          context.commit('setProfile', response.data)
+        if (payload.rememberMe) {
+          AuthHelper.login()
         }
-      })
-      .catch(e => {
-        console.log(e)
-      })
-  },
 
-  async getProfile (context) {
-    return axios.get('/api/users/profile')
-      .then(response => {
-        context.commit('login')
-        context.commit('setProfile', response.data)
+        commit('setLoggedIn', true)
       })
       .catch(e => {
-        context.commit('logout')
-        console.log(e)
+        console.log(e.response.status === 404)
+        if (e.response.status === 404) {
+          commit('setAuthError', true)
+        } else {
+          commit('setConnectionError', true)
+        }
       })
   }
 }
