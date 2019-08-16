@@ -5,8 +5,22 @@ import MainComponent from '@/components/MainComponent.vue'
 import ReviewsComponent from '@/components/ReviewsComponent.vue'
 
 const routes = [
-  { path: '*', component: MainComponent },
-  { path: '/reviews', component: ReviewsComponent, props: (route) => ({ searchString: route.query.q, page: parseInt(route.query.page) }) }
+  {
+    path: '*',
+    name: 'home',
+    component: MainComponent
+  },
+
+  {
+    path: '/reviews',
+    name: 'reviews',
+    component: ReviewsComponent,
+    props: (route) => ({
+      initialOrdering: route.query.sort,
+      initialSearchString: route.query.q,
+      initialPage: parseInt(route.query.p)
+    })
+  }
 ]
 
 Vue.use(VueRouter)
