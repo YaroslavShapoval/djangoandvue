@@ -1,6 +1,6 @@
 from rest_framework import routers
 from apps.users.views import UserViewSet
-from reviews.views import ReviewViewSet
+from apps.reviews.views import ReviewViewSet
 
 # Settings
 api = routers.DefaultRouter()

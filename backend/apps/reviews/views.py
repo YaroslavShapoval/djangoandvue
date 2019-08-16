@@ -3,8 +3,8 @@ from rest_framework import filters, viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from reviews.models import Review
-from reviews.serializers import ReviewSerializer
+from apps.reviews.models import Review
+from apps.reviews.serializers import ReviewSerializer
 
 
 class ReviewViewSet(viewsets.ModelViewSet):

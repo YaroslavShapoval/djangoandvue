@@ -35,7 +35,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
-    'reviews',
+    'apps.reviews',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

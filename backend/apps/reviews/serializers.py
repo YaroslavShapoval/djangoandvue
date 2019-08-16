@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from django.conf import settings
 
-from reviews.models import Review, REVIEW_MARK_CHOISES, REVIEW_MARK_NEUTRAL
+from apps.reviews.models import Review, REVIEW_MARK_CHOISES, REVIEW_MARK_NEUTRAL
 
 
 class ReviewSerializer(serializers.ModelSerializer):
