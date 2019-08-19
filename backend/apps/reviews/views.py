@@ -8,7 +8,7 @@ from apps.reviews.serializers import ReviewSerializer
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
-    search_fields = ['^title', '^author_name']
+    search_fields = ['title', 'author_name']
     filter_backends = (filters.SearchFilter, filters.OrderingFilter)
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
