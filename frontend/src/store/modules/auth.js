@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as AuthHelper from '../../authHelper'
 
 const state = {
-  loggedIn: false,
+  loggedIn: AuthHelper.checkLoggedId(),
   authError: false,
   setConnection: false
 }
@@ -10,7 +10,7 @@ const state = {
 const getters = {}
 
 const mutations = {
-  setLoggedIn (status) {
+  setLoggedIn (state, status) {
     state.loggedIn = status
   },
 
@@ -42,7 +42,6 @@ const actions = {
         commit('setLoggedIn', true)
       })
       .catch(e => {
-        console.log(e.response.status === 404)
         if (e.response.status === 404) {
           commit('setAuthError', true)
         } else {

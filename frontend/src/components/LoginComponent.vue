@@ -42,7 +42,7 @@ export default {
     return {
       email : "",
       password : "",
-      rememberMe: ""
+      rememberMe: true
     }
   },
 
@@ -71,7 +71,7 @@ export default {
         rememberMe: this.rememberMe
       }).then(() => {
         if (this.$store.state.auth.loggedIn) {
-          this.$router.push('/reviews')
+          this.$router.push('/')
         }
       })
     }
