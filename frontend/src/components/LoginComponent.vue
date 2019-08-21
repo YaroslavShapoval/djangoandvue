@@ -60,11 +60,6 @@ export default {
     submitLoginForm: function (e) {
       e.preventDefault()
 
-      const email = this.email
-      const password = this.password
-      const rememberMe = this.rememberMe
-
-
       this.login({
         email: this.email,
         password: this.password,
