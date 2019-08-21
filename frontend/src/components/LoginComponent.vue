@@ -6,7 +6,7 @@
       Please check your credentials and try again
     </div>
 
-    <div v-if="auth.setConnectionError" class="alert alert-danger" role="alert">
+    <div v-if="auth.connectionError" class="alert alert-danger" role="alert">
       Please check your connection and try again later
     </div>
 
